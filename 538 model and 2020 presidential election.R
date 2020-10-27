@@ -37,7 +37,7 @@ trump_victory_maps <- trump_victory_maps %>%
     states,
     sep = ","
   ) %>%
-  mutate_at(vars(-n), ~ as.logical(gsub(".*:", "", .x))) %>%
+  mutate_at(vars(-n), ~ as.logical(str_extract(.x, "[^:]+$"))) %>%
   arrange(desc(n))
 
 trump_wins_probability_by_state <- trump_victory_maps %>%
